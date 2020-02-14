@@ -127,3 +127,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+*.h5
+ai-model/data/*
+!ai-model/data/train.json
+.idea
+.vscode

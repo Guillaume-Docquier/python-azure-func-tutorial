@@ -1,0 +1,5 @@
+.venv
+.vscode
+ai-model
+tests
+myazfunc/oddity.h5
