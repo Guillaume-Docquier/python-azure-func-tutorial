@@ -3,7 +3,7 @@ import random
 import numpy as np
 import matplotlib.pyplot as plt
 
-from myazfunc.predict import INPUT_SIZE, predict_costs
+from costprediction.predict import INPUT_SIZE, predict_costs
 
 SHOW_GRAPH = True
 ADD_NOISE = False

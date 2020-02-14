@@ -2,7 +2,7 @@ import tensorflow as tf
 import numpy as np
 import json
 
-from myazfunc.predict import INPUT_SIZE, OUTPUT_SIZE, normalize, make_subsequences
+from costprediction.predict import INPUT_SIZE, OUTPUT_SIZE, normalize, make_subsequences
 
 BATCH_SIZE = 128
 EPOCHS = 5
@@ -22,13 +22,6 @@ def main():
     print('Fitting model on training data')
     history = model.fit(x_train, y_train, batch_size=BATCH_SIZE, epochs=EPOCHS, validation_split=VALIDATION_SPLIT)
     print('\nhistory dict:', history.history)
-
-    print('Loading train data')
-    x_test, y_test = get_data(TEST_DATA_PATH)
-
-    print('\nEvaluating model on test data')
-    results = model.evaluate(x_test,  y_test, batch_size=BATCH_SIZE)
-    print('test loss, test acc:', results)
 
     print('\nSaving model')
     model.save("./model.h5")

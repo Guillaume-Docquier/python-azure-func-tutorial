@@ -1,7 +1,7 @@
 import json
 import os
 
-from myazfunc.predict import INPUT_SIZE, OUTPUT_SIZE
+from costprediction.predict import INPUT_SIZE, OUTPUT_SIZE
 
 DATA_FOLDER = "./data/"
 RAW_DATA_FOLDER = DATA_FOLDER + "raw/"
