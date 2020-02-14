@@ -16,23 +16,23 @@ I also recommend you install Chocolatey
 https://chocolatey.org/docs/installation
 
 Once this is done, install the azure function core tools v2  
-(Chocolatey) ``choco install azure-functions-core-tools``
-(npm) ``npm install -g azure-functions-core-tools``
+(Chocolatey) ``choco install azure-functions-core-tools``  
+(npm) ``npm install -g azure-functions-core-tools``  
 
 Check the functions version, it should be 2.7.2184 or higher  
 ``func --version``  
 
 Setup the python virtual environment at the root of the project  
-``python -m venv .venv``
+``python -m venv .venv``  
 
 Use the virtual env  
-``.venv/scripts/activate``
+``.venv/scripts/activate``  
 
 Now initialize the python azure function project  
-``func init --python``
+``func init --python``  
 
 And create a python azure function with the HTTP trigger template  
-``func new --name costprediction --template "HTTP trigger"``
+``func new --name costprediction --template "HTTP trigger"``  
 
 If you did it right, you should be able to run the function locally  
 ``func start``  
@@ -48,7 +48,6 @@ Using something like curl or Postman, you can try and hit the endpoint
 (postman) POST http://localhost:7071/api/costprediction with RAW body { "name": "My King" }  
 
 You should receive ``Hello My King!``  
-
 Stop it with ``ctrl+c``  
 
 Now we need some code to run inside our function.  
@@ -70,7 +69,7 @@ Let's go back to our Azure Function. Time to code!
 Go to your function folder  
 ``cd costprediction``
 
-The ``init.py`` file defines the entry point for you function. In there, we'll  
+The ``init.py`` file defines the entry point for your function. In there, we'll  
 - Extract the data from the request
 - Pass the data to a function called ``predict_costs`` that will predict the costs
 - Format the results
@@ -80,7 +79,7 @@ The function that predicts costs does not exist yet. We'll create a new file for
 (git bash / linux) ``touch predict.py``  
 (powershell) ``echo $null >> predict.py``  
 
-We'll create the function called ``predict_costs``. It will  
+We'll create the function called ``predict_costs`` in there. It will  
 - Load the model
 - Normalize the input data
 - Create the subsequences
@@ -88,7 +87,7 @@ We'll create the function called ``predict_costs``. It will
 - Denormalize the predictions
 - Return the predictions
 
-Annnnd you're done! Not quite. Your function should work, but we don't have a model yet!  
+Annnnd we're done! Not quite. The function should work, but we don't have a model yet!  
 Let's do it now.  
 
 Go back to the root, create a folder called ``ai-model`` and navigate into it  
@@ -103,7 +102,7 @@ We'll create a file for our training called ``train.py``
 We'll also create a folder for our training data  
 ``mkdir data``  
 
-Copy the data file in here  
+Copy the data file in there  
 
 In ``train.py``, we'll have a ``main()`` that does the following:
 - Build a neural network
@@ -116,7 +115,7 @@ The training time is up to you, but to get great results we need to run it for q
 For our example, however, we can let it run a little and it'll work well enough.  
 
 Now that our model has been trained, let's test it!  
-Before just throwing it in our azure func, we'll write a test.  
+Before just throwing it in our azure func, we'll write an actual test.  
 We'll use ``matplotlib`` to draw graphs, so we'll need to install it.  
 ``pip install matplotlib``  
 
