@@ -2,4 +2,4 @@
 .vscode
 ai-model
 tests
-myazfunc/oddity.h5
+costprediction/model/oddity.h5

@@ -16,8 +16,10 @@ I also recommend you install Chocolatey
 https://chocolatey.org/docs/installation
 
 Once this is done, install the azure function core tools v2  
-(Chocolatey) ``choco install azure-functions-core-tools``  
-(npm) ``npm install -g azure-functions-core-tools``  
+``choco install azure-functions-core-tools``  
+
+We'll also need the Azure CLI later on  
+``choco install azure-cli``
 
 Check the functions version, it should be 2.7.2184 or higher  
 ``func --version``  
@@ -110,6 +112,7 @@ In ``train.py``, we'll have a ``main()`` that does the following:
 - Train the model using the data
 - Save the model
 
+The model has been saved, we'll copy it into our function  
 Now let's run it!  
 The training time is up to you, but to get great results we need to run it for quite some time.  
 For our example, however, we can let it run a little and it'll work well enough.  
@@ -142,6 +145,18 @@ Now that we know it works, let's publish it.
 We'll need to update ``.funcignore`` first to exclude the files we do not need to run the function  
 We also need to remove the ``get`` method from ``function.json``, because we don't need it  
 
-Deploy!  
-Hammer!  
-Monitor!  
+Time to deploy. For this, we need a function app to deploy to  
+Let's go in the portal and create a Function App (in gsoft-training-dev)  
+It requires a storage account for deployments and stuff  
+It need to be East US for the Linux Consumption Plan  
+Plug in app insights  
+
+Once the resource has been created, we'll publish from the command line  
+At the root of the project:  
+``az login``  
+``az account set --subscription overcast-dev``  
+``func azure functionapp publish vendrediformation``  
+
+The deployment should take a couple of minutes.  
+
+Now that it's done, we'll do a load test and monitor it!  

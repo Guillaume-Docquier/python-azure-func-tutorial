@@ -4,7 +4,7 @@ import os
 
 SCRIPT_PATH = os.path.abspath(__file__)
 SCRIPT_DIR = os.path.dirname(SCRIPT_PATH)
-MODEL_PATH = os.path.join(SCRIPT_DIR, "./model.h5")
+MODEL_PATH = os.path.join(SCRIPT_DIR, "model/model.h5")
 
 MODEL = None
 INPUT_SIZE = 7 * 12

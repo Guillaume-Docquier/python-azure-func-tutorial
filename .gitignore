@@ -133,3 +133,4 @@ ai-model/data/*
 !ai-model/data/train.json
 .idea
 .vscode
+.python_packages
