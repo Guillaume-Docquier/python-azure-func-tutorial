@@ -54,7 +54,7 @@ def predict_costs(actual_costs):
 
     normalized_costs = normalize(np.array(actual_costs))
     subsequences = make_subsequences(normalized_costs, INPUT_SIZE)
-    predictions = MODEL.predict(subsequences, subsequences.shape[0])
+    predictions = MODEL.predict(subsequences, subsequences.shape[0]).flatten()
     predictions = denormalize(predictions)
 
     return predictions.tolist()

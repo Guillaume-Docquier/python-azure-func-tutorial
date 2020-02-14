@@ -6,7 +6,6 @@ import matplotlib.pyplot as plt
 from costprediction.predict import INPUT_SIZE, predict_costs
 
 SHOW_GRAPH = True
-ADD_NOISE = False
 
 random.seed(43)
 
@@ -25,7 +24,7 @@ class TestMyAzFunc(unittest.TestCase):
         dates = np.array(list(range(data_size)))
         costs = np.array([BASE_COST if day < increase_start else BASE_COST + min((day - increase_start) / increase_duration, 1) * MEDIUM_INCREASE for day in range(data_size)])
 
-        predictions = predict_costs(costs)[:-1]  # Last one has nothing to compare to
+        predictions = np.array(predict_costs(costs)[:-1])  # Last one has nothing to compare to
         dates = dates[INPUT_SIZE:]  # First INPUT_SIZE data points have no predictions
         costs = costs[INPUT_SIZE:]  # First INPUT_SIZE data points have no predictions
 
@@ -48,14 +47,6 @@ def show_graph(title, dates, costs, predictions, errors):
     ax.legend(loc="upper left")
     plt.title(title)
     plt.show()
-
-
-def noise_factor(mean=1.0, std=0.02, chance=0.1):
-    roll = random.uniform(0, 1)
-    if ADD_NOISE and roll < chance:
-        return random.gauss(mean, std)
-
-    return 1
 
 
 if __name__ == "__main__":
