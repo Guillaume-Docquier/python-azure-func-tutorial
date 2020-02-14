@@ -12,23 +12,18 @@ OUTPUT_SIZE = 1
 
 
 def _load_model():
-    """
-    Load the TensorFlow model if it is not loaded in the current context
-
-    Azure functions often preserve their contexts between executions
-    https://docs.microsoft.com/en-us/azure/azure-functions/functions-reference-python#global-variables
-    """
-    global MODEL
-    if MODEL is None:
-        MODEL = tf.keras.models.load_model(MODEL_PATH)
+    # TODO use tf.keras.models.load_model
+    return
 
 
 def normalize(costs):
-    return np.log(costs + 1)
+    # TODO
+    return costs
 
 
 def denormalize(costs):
-    return np.exp(costs) - 1
+    # TODO
+    return costs
 
 
 def make_subsequences(data, subsequence_size):
@@ -50,11 +45,11 @@ def make_subsequences(data, subsequence_size):
 
 
 def predict_costs(actual_costs):
-    _load_model()
+    # TODO make sure the model is loaded
 
-    normalized_costs = normalize(np.array(actual_costs))
-    subsequences = make_subsequences(normalized_costs, INPUT_SIZE)
-    predictions = MODEL.predict(subsequences, subsequences.shape[0])
-    predictions = denormalize(predictions)
+    normalized_costs = np.array(costs)  # TODO use normalize()
+    subsequences = np.array(costs[INPUT_SIZE:])  # TODO use make_subsequences()
+    predictions = np.array([])  # TODO use MODEL.predict()
+    predictions = np.array([])  # TODO use denormalize()
 
     return predictions.tolist()

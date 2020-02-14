@@ -9,7 +9,6 @@ EPOCHS = 5
 VALIDATION_SPLIT = 0.15
 
 TRAIN_DATA_PATH = "./data/train.json"
-TEST_DATA_PATH = "./data/test.json"
 
 
 def main():
@@ -20,8 +19,7 @@ def main():
     x_train, y_train = get_data(TRAIN_DATA_PATH)
 
     print('Fitting model on training data')
-    history = model.fit(x_train, y_train, batch_size=BATCH_SIZE, epochs=EPOCHS, validation_split=VALIDATION_SPLIT)
-    print('\nhistory dict:', history.history)
+    # TODO Use model.fit()
 
     print('\nSaving model')
     model.save("./model.h5")
@@ -53,18 +51,12 @@ def build_model():
 
 
 def get_data(file_path):
-    with open(file_path) as json_file:
-        resource_costs = json.load(json_file)
-
+    # TODO Get the data from file
+    # TODO Normalize the data, and make the subsequences
     all_subsequences = []
-    for resource_cost in resource_costs:
-        resource_cost = normalize(np.array(resource_cost))
-        subsequences = make_subsequences(resource_cost, INPUT_SIZE + 1)
-        for subsequence in subsequences:
-            all_subsequences.append(subsequence)
 
-    x = np.array(all_subsequences)[:, :-1].astype('float32').reshape((len(all_subsequences), INPUT_SIZE))
-    y = np.array(all_subsequences)[:, -1].reshape((len(all_subsequences), OUTPUT_SIZE))
+    x = np.array(all_subsequences)  # TODO Get the right shape and type
+    y = np.array(all_subsequences)  # TODO Get the right shape and type
 
     return x, y
 

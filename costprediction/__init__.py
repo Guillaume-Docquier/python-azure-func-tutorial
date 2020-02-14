@@ -5,8 +5,8 @@ from .predict import predict_costs
 
 
 def main(req: func.HttpRequest) -> func.HttpResponse:
-    costs = req.get_json().get("costs")
+    costs = []  # TODO get the costs from req.get_json()
     predictions = predict_costs(costs)
-    response = json.dumps({"predictions": predictions})
+    response = ""  # TODO serialize the predictions using json.dumps()
 
     return func.HttpResponse(response)
