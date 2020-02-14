@@ -129,6 +129,7 @@ dmypy.json
 .pyre/
 
 *.h5
+!costprediction/model/model.h5
 ai-model/data/*
 !ai-model/data/train.json
 .idea

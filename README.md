@@ -136,7 +136,11 @@ In ``test_predictions.py``, we'll add a test suite with 1 test that will:
 - Plot the result
 - Validate our accuracy
 
+You can use the PyCharm test runner, or in the command line  
+``python -m unittest discover -v``
+
 Our model works fine for now, let's try our azure function.  
+``cd ..``
 ``func start``
 
 Use Postman and send data to the endpoint!  
